@@ -20,30 +20,30 @@ jobs:
         run: docker --version
 
       - name: Show Docker Compose version
-      - run: docker compose version
+        run: docker compose version
 
       - name: Validate Docker Compose config
-      - run: docker compose config
+        run: docker compose config
 
       - name: Build Docker images
-      - run: docker compose build
+        run: docker compose build
 
       - name: Start services
-      - run: docker compose up -d
+        run: docker compose up -d
 
       - name: Wait for services
-      - run: sleep 10
+        run: sleep 10
 
       - name: Check health endpoint
-      - run: curl -f http://localhost:8080/health
+        run: curl -f http://localhost:8080/health
 
       - name: Check main endpoint
-      - run: curl -f http://localhost:8080/
+        run: curl -f http://localhost:8080/
 
       - name: Show logs on failure
-      - if: failure()
-      - run: docker compose logs
+        if: failure()
+        run: docker compose logs
 
       - name: Stop services
-      - if: always()
-      - run: docker compose down -v
+        if: always()
+        run: docker compose down -v
